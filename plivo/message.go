@@ -3,7 +3,10 @@
 
 package plivo
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 type MessageService struct {
 	client *Client
@@ -70,8 +73,10 @@ func (s *MessageService) GetAll(p *MessageGetAllParams) ([]*Message, *Response, 
 	var err error
 	if s.client.Mock {
 		req, err = s.client.NewRequest("POST", s.client.authID+"/Message", p)
+		fmt.Println("NO SLASH")
 	} else {
 		req, err = s.client.NewRequest("GET", s.client.authID+"/Message/", p)
+		fmt.Println("WITH SLASH")
 	}
 	if err != nil {
 		return nil, nil, err
