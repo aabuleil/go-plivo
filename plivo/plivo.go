@@ -99,7 +99,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 
 	req, err := http.NewRequest(method, u.String()+params, buf)
 	fmt.Println("HTTP")
-	fmt.Println(err.Error())
+	fmt.Println(err)
 	if err != nil {
 		return nil, err
 	}
