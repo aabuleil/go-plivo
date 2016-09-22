@@ -3,8 +3,6 @@
 
 package plivo
 
-import "fmt"
-
 type MessageService struct {
 	client *Client
 }
@@ -44,8 +42,6 @@ type MessageSendResponseBody struct {
 // Make creates a call.
 func (c *MessageService) Send(mp *MessageSendParams) (*MessageSendResponseBody, *Response, error) {
 	req, err := c.client.NewRequest("POST", c.client.authID+"/Message/", mp)
-	fmt.Println("YOOOOOOOO")
-	fmt.Println(req)
 	if err != nil {
 		return nil, nil, err
 	}
