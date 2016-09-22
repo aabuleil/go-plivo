@@ -17,7 +17,7 @@ import (
 const (
 	libraryVersion = "0.1"
 	defaultBaseURL = "https://api.plivo.com/%s/Account/"
-	plivoMockURL   = "http://localhost:8000/%s/Account/"
+	plivoMockURL   = "https://localhost:8000/%s/Account/"
 	userAgent      = "go-plivo/" + libraryVersion
 	apiVersion     = "v1"
 )
