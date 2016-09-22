@@ -71,7 +71,7 @@ func (s *MessageService) GetAll(p *MessageGetAllParams) ([]*Message, *Response, 
 	if s.client.Mock {
 		req, err = s.client.NewRequest("POST", s.client.authID+"/Message", p)
 	} else {
-		req, err = s.client.NewRequest("GET", s.client.authID+"/Message", p)
+		req, err = s.client.NewRequest("GET", s.client.authID+"/Message/", p)
 	}
 	if err != nil {
 		return nil, nil, err
