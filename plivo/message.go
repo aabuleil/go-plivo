@@ -46,9 +46,9 @@ func (c *MessageService) Send(mp *MessageSendParams) (*MessageSendResponseBody, 
 	var req *http.Request
 	var err error
 	if c.client.Mock {
-		req, err = c.client.NewRequest("GET", c.client.authID+"/Message", mp)
+		req, err = c.client.NewRequest("POST", c.client.authID+"/Message", mp)
 	} else {
-		req, err = c.client.NewRequest("GET", c.client.authID+"/Message/", mp)
+		req, err = c.client.NewRequest("POST", c.client.authID+"/Message/", mp)
 	}
 	if err != nil {
 		return nil, nil, err
