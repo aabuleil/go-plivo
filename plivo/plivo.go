@@ -90,9 +90,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 			}
 			params = "?" + v.Encode()
 		} else {
-			fmt.Println("METHOD IS DIFFERENT")
 			err := json.NewEncoder(buf).Encode(body)
-			fmt.Println(err)
 			if err != nil {
 				return nil, err
 			}
@@ -100,6 +98,8 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	}
 
 	req, err := http.NewRequest(method, u.String()+params, buf)
+	fmt.Println("HTTP")
+	fmt.Println(err.Error())
 	if err != nil {
 		return nil, err
 	}
