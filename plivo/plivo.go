@@ -44,6 +44,8 @@ type Client struct {
 
 	authID    string
 	authToken string
+
+	Mock bool
 }
 
 // NewClient returns a new Plivo API client. If client is nil, http.DefaultClient will be used.
@@ -58,7 +60,7 @@ func NewClient(client *http.Client, authID, authToken string, mock bool) *Client
 		client = http.DefaultClient
 	}
 
-	c := &Client{client: client, BaseURL: baseURL, UserAgent: userAgent, authID: authID, authToken: authToken}
+	c := &Client{client: client, BaseURL: baseURL, UserAgent: userAgent, authID: authID, authToken: authToken, Mock: mock}
 	c.Account = &AccountService{client: c}
 	c.Application = &ApplicationService{client: c}
 	c.Call = &CallService{client: c}

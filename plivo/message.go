@@ -3,6 +3,8 @@
 
 package plivo
 
+import "net/http"
+
 type MessageService struct {
 	client *Client
 }
@@ -64,7 +66,13 @@ type MessageGetAllResponseBody struct {
 
 // GetAll fetches all messages.
 func (s *MessageService) GetAll(p *MessageGetAllParams) ([]*Message, *Response, error) {
-	req, err := s.client.NewRequest("GET", s.client.authID+"/Message/", p)
+	var req *http.Request
+	var err error
+	if !s.client.Mock {
+		req, err = s.client.NewRequest("GET", s.client.authID+"/Message/", p)
+	} else {
+		req, err = s.client.NewRequest("GET", s.client.authID+"/Message", p)
+	}
 	if err != nil {
 		return nil, nil, err
 	}
