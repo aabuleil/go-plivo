@@ -90,7 +90,9 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 			}
 			params = "?" + v.Encode()
 		} else {
+			fmt.Println("METHOD IS DIFFERENT")
 			err := json.NewEncoder(buf).Encode(body)
+			fmt.Println(err)
 			if err != nil {
 				return nil, err
 			}
