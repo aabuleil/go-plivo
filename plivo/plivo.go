@@ -52,9 +52,9 @@ type Client struct {
 func NewClient(client *http.Client, authID, authToken string, mock bool) *Client {
 	var baseURL *url.URL
 	if mock {
-		baseURL, _ = url.Parse(fmt.Sprintf(defaultBaseURL, apiVersion))
-	} else {
 		baseURL, _ = url.Parse(fmt.Sprintf(plivoMockURL, apiVersion))
+	} else {
+		baseURL, _ = url.Parse(fmt.Sprintf(defaultBaseURL, apiVersion))
 	}
 	if client == nil {
 		client = http.DefaultClient
