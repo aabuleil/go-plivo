@@ -3,6 +3,8 @@
 
 package plivo
 
+import "net/http"
+
 type MessageService struct {
 	client *Client
 }
@@ -41,7 +43,13 @@ type MessageSendResponseBody struct {
 
 // Make creates a call.
 func (c *MessageService) Send(mp *MessageSendParams) (*MessageSendResponseBody, *Response, error) {
-	req, err := c.client.NewRequest("POST", c.client.authID+"/Message/", mp)
+	var req *http.Request
+	var err error
+	if c.client.Mock {
+		req, err = c.client.NewRequest("POST", c.client.authID+"/Message", mp)
+	} else {
+		req, err = c.client.NewRequest("POST", c.client.authID+"/Message/", mp)
+	}
 	if err != nil {
 		return nil, nil, err
 	}
