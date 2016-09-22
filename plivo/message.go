@@ -68,7 +68,7 @@ type MessageGetAllResponseBody struct {
 func (s *MessageService) GetAll(p *MessageGetAllParams) ([]*Message, *Response, error) {
 	var req *http.Request
 	var err error
-	if !s.client.Mock {
+	if s.client.Mock {
 		req, err = s.client.NewRequest("GET", s.client.authID+"/Message/", p)
 	} else {
 		req, err = s.client.NewRequest("GET", s.client.authID+"/Message", p)
